@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Premium</title>
+    <style>
+        /* Basic Styles */
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #menu-toggle {
+            display: none;
+            background: none;
+            color: white;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Features Boxes */
+        .premium-container {
+            margin-top: 50px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-box video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Pricing */
+        .pricing {
+            margin-top: 30px;
+        }
+
+        #subscribe-btn {
+            background: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        #subscribe-btn:hover {
+            background: lightblue;
+        }
+
+        /* Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .download-options img {
+            width: 50px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        /* Snowfall Effect */
+        .snowfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('snow.gif'); /* Replace with actual snowfall animation */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">
+            <img src="app.jpeg" alt="Aura Logo"> <!-- Replace with actual logo -->
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="html.html">Home</a></li>
+                <li><a href="html.html">Features</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="premium.html">Premium</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="tos.html">Terms of Service</a></li>
+            </ul>
+            <button id="menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Snowfall Effect -->
+    <div class="snowfall"></div>
+
+    <!-- Premium Section -->
+    <section class="premium-container">
+        <h1>Unlock Aura Premium</h1>
+
+        <div class="features">
+            <div class="feature-box">
+                <h2>Animated Profile Pictures</h2>
+                <p>Bring your profile to life with customizable animated profile pictures.</p>
+                <video autoplay loop muted>
+                    <source src="animated-pfp.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="feature-box">
+                <h2>Animated Banners</h2>
+                <p>Show off your creativity with animated banners on your profile.</p>
+                <video autoplay loop muted>
+                    <source src="animated-banner.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="feature-box">
+                <h2>Animated Emojis</h2>
+                <p>Express yourself with animated emojis in chats and communities.</p>
+                <video autoplay loop muted>
+                    <source src="animated-emojis.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="feature-box">
+                <h2>4K Streaming</h2>
+                <p>Stream your favorite content in ultra-high-definition quality.</p>
+                <video autoplay loop muted>
+                    <source src="4k-stream.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="feature-box">
+                <h2>Offline Music</h2>
+                <p>Enjoy your favorite songs without an internet connection.</p>
+                <video autoplay loop muted>
+                    <source src="offline-music.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="feature-box">
+                <h2>Ad-Free Music</h2>
+                <p>Listen to uninterrupted music with our ad-free experience.</p>
+                <video autoplay loop muted>
+                    <source src="adfree-music.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="pricing">
+            <h2>Only $9.99 per month</h2>
+            <button id="subscribe-btn">Subscribe Now</button>
+        </div>
+    </section>
+
+    <!-- Download Popup -->
+    <div id="download-popup" class="popup">
+        <div class="popup-content">
+            <h2>Download Aura</h2>
+            <div class="download-options">
+                <a href="download-windows.exe"><img src="windows-symbol-brand-logo-white-design-microsoft-software-illustration-with-black-background-free-vector.jpg" alt="Windows"></a>
+                <a href="download-mac.dmg"><img src="mac-os.png" alt="Mac"></a>
+                <a href="download-android.apk"><img src="android-os.png" alt="Android"></a>
+                <a href="download-ios.ipa"><img src="mac-os.png" alt="iOS"></a>
+            </div>
+            <button id="close-popup">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger Menu
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("nav-menu").classList.toggle("active");
+        });
+
+        // Download Popup
+        document.getElementById("subscribe-btn").addEventListener("click", function () {
+            document.getElementById("download-popup").style.display = "block";
+        });
+
+        document.getElementById("close-popup").addEventListener("click", function () {
+            document.getElementById("download-popup").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
