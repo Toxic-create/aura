@@ -289,6 +289,30 @@
         maxSize: 12,
         speed: 2
     });
+    
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const downloadBtn = document.getElementById('download-btn');
+    const downloadModal = document.getElementById('download-modal');
+    const closeModal = document.querySelector('.close-modal');
+
+    hamburger.addEventListener('click', () => {
+        mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    downloadBtn.addEventListener('click', () => {
+        downloadModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+        downloadModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === downloadModal) {
+            downloadModal.style.display = 'none';
+        }
+    });
 </script>
 
 </body>
