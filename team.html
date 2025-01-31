@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the Aura Team">
+    <meta name="theme-color" content="#6a98f0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+    <link rel="icon" href="app.jpeg" type="image/png">
+    <title>Aura | Meet the Team</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background-color: #0a0a0a;
+            color: #a1a1aa;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+        }
+        header a:hover {
+            color: #6a98f0;
+        }
+        .team-container {
+            padding: 50px 10%;
+            text-align: center;
+        }
+        .team-container h1 {
+            color: #6a98f0;
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .team-member {
+            background-color: #161616;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        .team-banner video {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        .team-info {
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+        }
+        .team-info video {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #161616;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #0a0a0a;
+        }
+        .team-info h3 {
+            font-size: 1.5rem;
+            margin: 50px 0 10px;
+            color: #6a98f0;
+        }
+        .team-info .badges {
+            margin: 10px 0;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #6a98f0;
+            color: #ffffff;
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+        }
+        .team-info p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <div class="logo">
+        <img src="app.jpeg" alt="Aura Logo">
+        <span>Aura</span>
+    </div>
+    <nav>
+        <a href="html.html">Home</a>
+        <a href="tos.html">Terms of Service</a>
+    </nav>
+</header>
+
+<!-- Team Section -->
+<div class="team-container">
+    <h1>Meet the Team</h1>
+    <div class="team-grid">
+        <!-- Owner (First Member) -->
+        <div class="team-member">
+            <div class="team-banner">
+                <video autoplay loop muted>
+                    <source src="f3a6b9f7-555b-4ca9-a9a0-c1d69c2d0933.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="team-info">
+                <video autoplay loop muted>
+                    <source src="1cc00255-9c59-4396-8e02-3018ce4da779.mp4" type="video/mp4">
+                </video>
+                <h3>John Doe</h3>
+                <div class="badges">
+                    <span class="badge">Owner</span>
+                    <span class="badge">Founder</span>
+                    <span class="badge">Developer</span>
+                </div>
+                <p>Passionate about building communities and creating innovative features for Aura.</p>
+            </div>
+        </div>
+        <!-- Admin 1 -->
+        <div class="team-member">
+            <div class="team-banner">
+                <video autoplay loop muted>
+                    <source src="cdn/team-banner2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="team-info">
+                <video autoplay loop muted>
+                    <source src="cdn/member2-pfp.mp4" type="video/mp4">
+                </video>
+                <h3>Jane Smith</h3>
+                <div class="badges">
+                    <span class="badge">Admin</span>
+                    <span class="badge">Designer</span>
+                </div>
+                <p>Crafting visually stunning designs and seamless user experiences for Aura.</p>
+            </div>
+        </div>
+        <!-- Admin 2 -->
+        <div class="team-member">
+            <div class="team-banner">
+                <video autoplay loop muted>
+                    <source src="cdn/team-banner3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="team-info">
+                <video autoplay loop muted>
+                    <source src="cdn/member3-pfp.mp4" type="video/mp4">
+                </video>
+                <h3>Emily Johnson</h3>
+                <div class="badges">
+                    <span class="badge">Admin</span>
+                </div>
+                <p>Dedicated to fostering engaging conversations and ensuring a welcoming space.</p>
+            </div>
+        </div>
+        <!-- Admin 3 -->
+        <div class="team-member">
+            <div class="team-banner">
+                <video autoplay loop muted>
+                    <source src="cdn/team-banner4.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="team-info">
+                <video autoplay loop muted>
+                    <source src="cdn/member4-pfp.mp4" type="video/mp4">
+                </video>
+                <h3>Michael Lee</h3>
+                <div class="badges">
+                    <span class="badge">Admin</span>
+                    <span class="badge">Developer</span>
+                </div>
+                <p>Expert in backend systems and APIs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Snow Effect -->
+<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+<script>
+    new Snowflakes({
+        count: 50,
+        color: '#ffffff',
+        minSize: 5,
+        maxSize: 12,
+        speed: 2
+    });
+</script>
+
+</body>
+</html>
