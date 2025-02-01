@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Premium</title>
     <style>
-        /* Basic Styles */
+        /* General Styling */
         body {
-            background: black;
+            background: #0d0d0d;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Manrope', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
         }
 
-        /* Navigation */
+        /* Header & Navigation */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 10%;
+            background: rgba(15, 15, 15, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
         }
 
         .logo img {
-            width: 100px;
+            width: 70px;
         }
 
         nav ul {
@@ -33,6 +37,7 @@
             display: flex;
             gap: 15px;
             padding: 0;
+            margin: 0;
         }
 
         nav ul li {
@@ -43,39 +48,72 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
         }
 
+        nav ul li a:hover {
+            color: #6a98f0;
+        }
+
+        /* Hamburger Menu */
         #menu-toggle {
             display: none;
             background: none;
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             border: none;
             cursor: pointer;
         }
 
-        /* Features Boxes */
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 55px;
+            left: 0;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.95);
+            flex-direction: column;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: white;
+            padding: 8px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .mobile-nav a:hover {
+            background: #1a1a1a;
+        }
+
+        /* Premium Features */
         .premium-container {
             margin-top: 50px;
+            padding: 20px;
         }
 
         .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            justify-content: center;
+            padding: 20px;
         }
 
         .feature-box {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
-            width: 300px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.3s;
         }
 
         .feature-box:hover {
             transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .feature-box video {
@@ -89,18 +127,19 @@
         }
 
         #subscribe-btn {
-            background: blue;
+            background: linear-gradient(45deg, #6a98f0, #5479c4);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: bold;
             transition: 0.3s;
         }
 
         #subscribe-btn:hover {
-            background: lightblue;
+            background: linear-gradient(45deg, #5479c4, #6a98f0);
         }
 
         /* Popup */
@@ -110,28 +149,58 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            color: black;
+            background: #222;
+            color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .download-options img {
             width: 50px;
-            margin: 10px;
             cursor: pointer;
         }
 
-        /* Snowfall Effect */
-        .snowfall {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: url('snow.gif'); /* Replace with actual snowfall animation */
+        #close-popup {
+            margin-top: 15px;
+            background: red;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            #menu-toggle {
+                display: block;
+            }
+
+            .premium-container h1 {
+                font-size: 24px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            #subscribe-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -140,12 +209,12 @@
     <!-- Navigation Bar -->
     <header>
         <div class="logo">
-            <img src="app.jpeg" alt="Aura Logo"> <!-- Replace with actual logo -->
+            <img src="app.jpeg" alt="Aura Logo">
         </div>
         <nav>
             <ul id="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html">Features</a></li>
+                <li><a href="index.html#features">Features</a></li>
                 <li><a href="team.html">Team</a></li>
                 <li><a href="premium.html">Premium</a></li>
                 <li><a href="support.html">Support</a></li>
@@ -155,60 +224,33 @@
         </nav>
     </header>
 
-    <!-- Snowfall Effect -->
-    <div class="snowfall"></div>
+    <div class="mobile-nav" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="team.html">Team</a>
+        <a href="premium.html">Premium</a>
+        <a href="support.html">Support</a>
+        <a href="tos.html">Terms of Service</a>
+    </div>
 
-    <!-- Premium Section -->
+    <!-- Premium Features -->
     <section class="premium-container">
         <h1>Unlock Aura Premium</h1>
 
         <div class="features">
             <div class="feature-box">
                 <h2>Animated Profile Pictures</h2>
-                <p>Bring your profile to life with customizable animated profile pictures.</p>
-                <video autoplay loop muted>
-                    <source src="animated-pfp.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="feature-box">
-                <h2>Animated Banners</h2>
-                <p>Show off your creativity with animated banners on your profile.</p>
-                <video autoplay loop muted>
-                    <source src="animated-banner.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="feature-box">
-                <h2>Animated Emojis</h2>
-                <p>Express yourself with animated emojis in chats and communities.</p>
-                <video autoplay loop muted>
-                    <source src="animated-emojis.mp4" type="video/mp4">
-                </video>
+                <video autoplay loop muted><source src="animated-pfp.mp4" type="video/mp4"></video>
             </div>
 
             <div class="feature-box">
                 <h2>4K Streaming</h2>
-                <p>Stream your favorite content in ultra-high-definition quality.</p>
-                <video autoplay loop muted>
-                    <source src="4k-stream.mp4" type="video/mp4">
-                </video>
+                <video autoplay loop muted><source src="4k-stream.mp4" type="video/mp4"></video>
             </div>
 
             <div class="feature-box">
                 <h2>Offline Music</h2>
-                <p>Enjoy your favorite songs without an internet connection.</p>
-                <video autoplay loop muted>
-                    <source src="offline-music.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="feature-box">
-                <h2>Ad-Free Music</h2>
-                <p>Listen to uninterrupted music with our ad-free experience.</p>
-                <video autoplay loop muted>
-                    <source src="adfree-music.mp4" type="video/mp4">
-                </video>
+                <video autoplay loop muted><source src="offline-music.mp4" type="video/mp4"></video>
             </div>
         </div>
 
@@ -221,30 +263,27 @@
 
     <!-- Download Popup -->
     <div id="download-popup" class="popup">
-        <div class="popup-content">
-            <h2>Download Aura</h2>
-            <div class="download-options">
-                <a href="download-windows.exe"><img src="windows-symbol-brand-logo-white-design-microsoft-software-illustration-with-black-background-free-vector.jpg" alt="Windows"></a>
-                <a href="download-mac.dmg"><img src="mac-os.png" alt="Mac"></a>
-                <a href="download-android.apk"><img src="android-os.png" alt="Android"></a>
-                <a href="download-ios.ipa"><img src="mac-os.png" alt="iOS"></a>
-            </div>
-            <button id="close-popup">Close</button>
+        <h2>Download Aura</h2>
+        <div class="download-options">
+            <a href="#"><img src="windows.png" alt="Windows"></a>
+            <a href="#"><img src="mac.png" alt="Mac"></a>
+            <a href="#"><img src="android.png" alt="Android"></a>
+            <a href="#"><img src="ios.png" alt="iOS"></a>
         </div>
+        <button id="close-popup">Close</button>
     </div>
 
     <script>
-        // Hamburger Menu
-        document.getElementById("menu-toggle").addEventListener("click", function () {
-            document.getElementById("nav-menu").classList.toggle("active");
+        document.getElementById("menu-toggle").addEventListener("click", () => {
+            document.getElementById("mobile-menu").style.display = 
+                document.getElementById("mobile-menu").style.display === "block" ? "none" : "block";
         });
 
-        // Download Popup
-        document.getElementById("subscribe-btn").addEventListener("click", function () {
+        document.getElementById("subscribe-btn").addEventListener("click", () => {
             document.getElementById("download-popup").style.display = "block";
         });
 
-        document.getElementById("close-popup").addEventListener("click", function () {
+        document.getElementById("close-popup").addEventListener("click", () => {
             document.getElementById("download-popup").style.display = "none";
         });
     </script>
