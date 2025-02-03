@@ -140,20 +140,22 @@
             margin-top: 30px;
         }
 
+        /* Subscribe Button - Updated to match Download Button */
         #subscribe-btn {
-            background: linear-gradient(45deg, #6a98f0, #5479c4);
-            color: white;
-            padding: 12px 20px;
-            border: none;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #0a0a0a;
             border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         #subscribe-btn:hover {
-            background: linear-gradient(45deg, #5479c4, #6a98f0);
+            background-color: #f1f1f1;
+            color: #000000;
         }
 
         /* Subscription Popup */
@@ -274,45 +276,14 @@
         document.getElementById("close-popup").addEventListener("click", () => {
             document.getElementById("download-popup").style.display = "none";
         });
-        
+
         const hamburger = document.querySelector('.hamburger-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const downloadBtn = document.getElementById('download-btn');
-    const downloadModal = document.getElementById('download-modal');
-    const closeModal = document.querySelector('.close-modal');
+        const mobileNav = document.querySelector('.mobile-nav');
 
-    hamburger.addEventListener('click', () => {
-        mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
-    });
-
-    downloadBtn.addEventListener('click', () => {
-        downloadModal.style.display = 'flex';
-    });
-
-    closeModal.addEventListener('click', () => {
-        downloadModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === downloadModal) {
-            downloadModal.style.display = 'none';
-        }
-    });
-
-    // Feature animations
-    const features = document.querySelectorAll('.feature');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+        hamburger.addEventListener('click', () => {
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
         });
-    }, { threshold: 0.2 });
-
-    features.forEach(feature => observer.observe(feature));
-
-  </script>
+    </script>
 
 </body>
 </html>
