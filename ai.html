@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aura AI - Your smart assistant for chatting, streaming, and enjoying music.">
+    <meta name="theme-color" content="#6a98f0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+    <link rel="icon" href="cdn/aura-icon.png" type="image/png">
+    <title>Aura AI | Smart Chat Assistant</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('cdn/aura-banner.png') no-repeat center center/cover;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            color: #a1a1aa;
+        }
+        footer a {
+            color: #6a98f0;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #5479c4;
+        }
+
+        /* Popup Styling */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9999;
+        }
+        #popup p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        #popup button {
+            background: #6a98f0;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #popup button:hover {
+            background: #5479c4;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            z-index: 9998;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="app.jpeg" alt="Aura Logo">
+        <span>Aura AI</span>
+    </div>
+</header>
+
+<div class="hero">
+    <h1>Welcome to Aura AI</h1>
+    <p>Your smart chatbot assistant for Aura-related inquiries.</p>
+</div>
+
+<footer>
+    <p>&copy; 2025 Aura Inc. All Rights Reserved.</p>
+</footer>
+
+<!-- Snow Effect -->
+<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+<script>
+    new Snowflakes({
+        count: 50,
+        color: '#ffffff',
+        minSize: 5,
+        maxSize: 12,
+        speed: 2
+    });
+</script>
+
+<!-- Popup Modal -->
+<div id="overlay"></div>
+<div id="popup">
+    <p>Evelyn has signed to work only for Aura. She will only answer questions regarding Aura and not any other questions.</p>
+    <button onclick="agreeToTerms()">OK, I Agree</button>
+</div>
+
+<!-- AI Chatbot Script (Loads after agreement) -->
+<script>
+    function agreeToTerms() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+
+        // Load chatbot script after user agrees
+        var script = document.createElement('script');
+        script.src = "https://joyz.ai/lib/chatbot.bundle.js";
+        script.setAttribute('eid', "67a0ef3097dd784d9791b939");
+        script.setAttribute('chatbotId', "5c59c890-0082-4dc5-8bbb-2d7d1d558bdc");
+        document.head.appendChild(script);
+    }
+
+    // Show popup when page loads
+    window.onload = function() {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    };
+</script>
+
+</body>
+</html>
 
