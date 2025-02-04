@@ -239,13 +239,15 @@
 
     <script>
         // Snowflakes effect
-        new Snowflakes({
-            count: 50,
-            color: '#ffffff',
-            minSize: 5,
-            maxSize: 12,
-            speed: 2
-        });
+        window.onload = function() {
+            new Snowflakes({
+                count: 50,
+                color: '#ffffff',
+                minSize: 5,
+                maxSize: 12,
+                speed: 2
+            });
+        };
 
         // Hamburger menu toggle
         const hamburger = document.querySelector('.hamburger-menu');
@@ -256,7 +258,6 @@
 
         // Simulate AI response
         function sendAIResponse(message) {
-            // For now, simulate an AI response with a simple function
             const aiMessage = `AI Response: You said, "${message}"`; // Example AI response
             const aiMessageElement = document.createElement('div');
             aiMessageElement.classList.add('ai-message');
