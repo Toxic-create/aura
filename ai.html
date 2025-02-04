@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aura Chatbot Interface">
-    <meta name="theme-color" content="#6a98f0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
-    <link rel="icon" href="app.jpeg" type="image/png">
-    <title>Aura | AI Chat</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aura Chatbot Interface">
+  <meta name="theme-color" content="#6a98f0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap">
+  <link rel="icon" href="app.jpeg" type="image/png">
+  <title>Aura | AI Chat</title>
+  <style>
         body {
             margin: 0;
             font-family: 'Manrope', sans-serif;
@@ -148,36 +148,95 @@
             bottom: 0;
             pointer-events: none;
         }
-    </style>
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 2000;  /* Ensures hamburger is above other content */
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;  /* Makes the hamburger menu visible */
+            border-radius: 5px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mobile-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .mobile-nav a:hover {
+            color: #6a98f0;
+        }
+
+        /* Media Query for Mobile */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: flex;
+                position: absolute;
+                top: 80px;
+                right: 10%;
+                background-color: #0a0a0a;
+                padding: 20px;
+                z-index: 1000;
+                border-radius: 10px;
+            }
+        }
+  </style>
 </head>
 <body>
 
-<!-- Header Section -->
-<header>
+  <header>
     <div class="logo">
-        <img src="app.jpeg" alt="Aura Logo">
-        <span>Aura</span>
+      <img src="app.jpeg" alt="Aura Logo"> <span>Aura</span>
     </div>
-</header>
-
-<!-- Chat Section -->
-<div class="chat-container">
-    <div class="messages" id="messages">
-        <!-- Messages will be dynamically added here -->
+    <nav class="desktop-nav">
+      <a href="index.html">Home</a> <a href="tos.html">Terms of Service</a>
+    </nav>
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-</div>
+    <div class="mobile-nav">
+      <a href="index.html">Features</a> <a href="team.html">Team</a> <a href="premium.html">Premium</a> <a href="nexaurasup@gmail.com">Support</a> <a href="tos.html">Terms of Service</a>
+    </div>
+  </header>
 
-<!-- Input Bar Section -->
-<div class="input-bar">
+  <div class="chat-container">
+    <div class="messages" id="messages"></div>
+  </div>
+
+  <div class="input-bar">
     <input type="text" id="userInput" placeholder="Type your message...">
-    <button class="send-btn" onclick="sendMessage()">
-        <img src="send-icon.png" alt="Send Icon"> <!-- Replace with the actual image path -->
-    </button>
-</div>
+    <button class="send-btn" onclick="sendMessage()"><img src="send-icon.png" alt="Send Icon"></button>
+  </div>
 
-<!-- Snow Effect -->
-<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
-<script>
+  <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+  <script>
     new Snowflakes({
         count: 50,
         color: '#ffffff',
@@ -210,14 +269,20 @@
         setTimeout(() => {
             const aiMessage = document.createElement('div');
             aiMessage.classList.add('message', 'ai');
-            aiMessage.textContent = "This is an AI response!"; // Replace with your AI response logic
+            aiMessage.textContent = "AI Is UnderDevelopment"; // Replace with your AI response logic
             document.getElementById('messages').appendChild(aiMessage);
 
             // Scroll to the bottom
             document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
         }, 1000);
     }
-</script>
+
+    // Toggle mobile menu visibility
+    function toggleMenu() {
+        const mobileNav = document.querySelector('.mobile-nav');
+        mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
 
 </body>
 </html>
