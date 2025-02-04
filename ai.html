@@ -5,225 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Aura Chatbot Interface">
   <meta name="theme-color" content="#6a98f0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
   <link rel="icon" href="app.jpeg" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <title>Aura | AI Chat</title>
   <style>
-        body {
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-            background-color: #0a0a0a;
-            color: #a1a1aa;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+    body {
+        margin: 0;
+        font-family: 'Manrope', sans-serif;
+        background-color: #0a0a0a;
+        color: #a1a1aa;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    /* Header Section */
+    header {
+        background-color: #0a0a0a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid #222;
+    }
+
+    header .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    header a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 600;
+    }
+
+    header a:hover {
+        color: #6a98f0;
+    }
+
+    /* Chat Section */
+    .chat-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        overflow-y: auto;
+        height: calc(100vh - 100px); /* adjust for header */
+    }
+
+    .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    .message {
+        display: flex;
+        align-items: flex-start;
+        background-color: #161616;
+        border-radius: 10px;
+        padding: 10px;
+        max-width: 70%;
+        color: #fff;
+        margin-left: auto;
+        animation: slide-up 0.5s ease-out;
+    }
+
+    .message.ai {
+        background-color: #6a98f0;
+        margin-left: 0;
+        padding-left: 40px;
+    }
+
+    /* AI profile picture outside the message box */
+    .ai-pfp {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-image: url('ai-profile.jpg'); /* Replace with your profile picture URL */
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .message-text {
+        max-width: 80%;
+        padding: 10px;
+        background-color: #161616;
+        border-radius: 10px;
+        color: #fff;
+    }
+
+    @keyframes slide-up {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
         }
-
-        /* Header Section */
-        header {
-            background-color: #0a0a0a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #222;
+        100% {
+            transform: translateY(0);
+            opacity: 1;
         }
+    }
 
-        header .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* Input Bar Section */
+    .input-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #161616;
+        padding: 10px;
+        position: sticky;
+        bottom: 0;
+        z-index: 2000;
+    }
 
-        header img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+    .input-bar input {
+        flex: 1;
+        padding: 10px;
+        background-color: #222;
+        border: none;
+        border-radius: 30px;
+        color: #fff;
+        margin-right: 10px;
+        font-size: 16px;
+    }
 
-        header a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-        }
+    .send-btn {
+        background-color: #6a98f0;
+        padding: 10px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        header a:hover {
-            color: #6a98f0;
-        }
+    /* Snow Effect */
+    .snowfall {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+    }
 
-        /* Chat Section */
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            overflow-y: auto;
-            height: calc(100vh - 100px); /* adjust for header */
-        }
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 2000;
+    }
 
-        .messages {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 100%;
-            overflow-y: auto;
-        }
-
-        .message {
-            background-color: #161616;
-            border-radius: 10px;
-            padding: 10px;
-            max-width: 70%;
-            color: #fff;
-            margin-left: auto;
-            animation: slide-up 0.5s ease-out;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .message.ai {
-            background-color: #6a98f0;
-            margin-left: 0;
-        }
-
-        .message .ai-pfp {
-           width: 30px;
-           height: 30px;
-           border-radius: 50%;
-           background-image: url('https://media.discordapp.net/attachments/1253405863314718821/1336012377631494164/IMG_20250203_220545.jpg?ex=67a2eabc&is=67a1993c&hm=5091deeed351239574514574efb05b917e80a7e70cf2f2d884c4a2e27ca7e875&='); /* Replace with your profile picture URL */
-           background-size: cover;
-           background-position: center;
-           display: inline-block;
-        }
-
-
-       @keyframes slide-up {
-            0% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Input Bar Section */
-        .input-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #161616;
-            padding: 10px;
-            position: sticky;
-            bottom: 0;
-            z-index: 2000;
-        }
-
-        .input-bar input {
-            flex: 1;
-            padding: 10px;
-            background-color: #222;
-            border: none;
-            border-radius: 30px;
-            color: #fff;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-
-        .send-btn {
-            background-color: #6a98f0;
-            padding: 10px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .send-btn i {
-            color: #fff;
-            font-size: 16px;
-        }
-
-        /* Snow Effect */
-        .snowfall {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-        }
-
-        /* Hamburger Menu */
-        .hamburger-menu {
+    .hamburger-menu span {
+        width: 25px;
+        height: 3px;
+        background-color: #ffffff;
+        border-radius: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .desktop-nav {
             display: none;
+        }
+        .hamburger-menu {
+            display: flex;
             flex-direction: column;
             gap: 5px;
-            cursor: pointer;
-            z-index: 2000;  /* Ensures hamburger is above other content */
+            z-index: 2000;
         }
-
-        .hamburger-menu span {
-            width: 25px;
-            height: 3px;
-            background-color: #ffffff;  /* Makes the hamburger menu visible */
-            border-radius: 5px;
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .mobile-nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 0;
-            border-bottom: 1px solid #444;
-        }
-
-        .mobile-nav a:hover {
-            color: #6a98f0;
-        }
-
-        /* Media Query for Mobile */
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-
-            .hamburger-menu {
-                display: flex;
-            }
-
-            .mobile-nav {
-                display: flex;
-                position: absolute;
-                top: 80px;
-                right: 10%;
-                background-color: #0a0a0a;
-                padding: 20px;
-                z-index: 1000;
-                border-radius: 10px;
-            }
-        }
+    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">
       <img src="app.jpeg" alt="Aura Logo"> <span>Aura</span>
@@ -231,11 +205,7 @@
     <nav class="desktop-nav">
       <a href="index.html">Home</a> <a href="tos.html">Terms of Service</a>
     </nav>
-    <div class="hamburger-menu" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <div class="hamburger-menu"></div>
     <div class="mobile-nav">
       <a href="index.html">Features</a> <a href="team.html">Team</a> <a href="premium.html">Premium</a> <a href="nexaurasup@gmail.com">Support</a> <a href="tos.html">Terms of Service</a>
     </div>
@@ -246,11 +216,13 @@
   </div>
 
   <div class="input-bar">
-    <input type="text" id="userInput" placeholder="Type your message...">
-    <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    <input type="text" id="userInput" placeholder="Type your message..."> 
+    <button class="send-btn" onclick="sendMessage()">
+      <img src="send-icon.png" alt="Send Icon"> <!-- Replace with your send icon path -->
+    </button>
   </div>
 
-  <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+  <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script> 
   <script>
     new Snowflakes({
         count: 50,
@@ -285,14 +257,16 @@
             const aiMessage = document.createElement('div');
             aiMessage.classList.add('message', 'ai');
 
-            // Add AI profile picture next to the message
+            // Add AI profile picture outside the message box
             const aiProfilePicture = document.createElement('div');
             aiProfilePicture.classList.add('ai-pfp');
             aiMessage.appendChild(aiProfilePicture);
 
-            const aiText = document.createElement('span');
-            aiText.textContent = "Evelyn AI Is Under Development Please Wait!"; // Replace with your AI response logic
-            aiMessage.appendChild(aiText);
+            // Create a div for the AI's message text
+            const messageText = document.createElement('div');
+            messageText.classList.add('message-text');
+            messageText.textContent = "This is an AI response!"; // Replace with your AI response logic
+            aiMessage.appendChild(messageText);
 
             document.getElementById('messages').appendChild(aiMessage);
 
@@ -300,13 +274,6 @@
             document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
         }, 1000);
     }
-
-    // Toggle mobile menu visibility
-    function toggleMenu() {
-        const mobileNav = document.querySelector('.mobile-nav');
-        mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
-    }
   </script>
-
 </body>
 </html>
