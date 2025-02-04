@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Chatbot</title>
-    <!-- Snowflakes effect -->
-    <script src="https://cdn.jsdelivr.net/npm/magic-snowflakes@1.0.0/dist/magic-snowflakes.min.js"></script>
+    <meta name="description" content="Meet the Aura Team">
+    <meta name="theme-color" content="#6a98f0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
+    <link rel="icon" href="app.jpeg" type="image/png">
+    <title>Aura | Meet the Team</title>
+    <!-- Snowflakes Effect -->
+    <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
     <style>
-        /* General Styles */
+        /* General Styling */
         * {
             margin: 0;
             padding: 0;
@@ -15,14 +19,14 @@
         }
 
         body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            background-color: #0a0a0a;
+            color: #a1a1aa;
+            overflow-x: hidden;
             height: 100vh;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Snowflakes Effect */
@@ -37,124 +41,162 @@
 
         /* Header Section */
         header {
-            position: absolute;
-            top: 10px;
-            left: 10px;
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        header .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
-        header .logo img {
+        header img {
             width: 40px;
             height: 40px;
-            margin-right: 10px;
+            border-radius: 50%;
         }
 
-        header .logo span {
+        header span {
+            color: white;
             font-size: 24px;
             font-weight: bold;
         }
 
-        /* Chatbox Styles */
-        .chat-container {
+        header .desktop-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header .desktop-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        header .desktop-nav a:hover {
+            color: #6a98f0;
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #161616;
             position: absolute;
-            bottom: 50px;
+            top: 60px;
+            right: 10px;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+        }
+
+        .mobile-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 0;
+        }
+
+        .mobile-nav a:hover {
+            color: #6a98f0;
+        }
+
+        /* Chatbox Styling */
+        .chatbox {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 90%;
             max-width: 600px;
-            height: 400px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
+            background-color: #161616;
             padding: 20px;
-            overflow-y: auto;
-        }
-
-        .chat-box {
-            flex: 1;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
         }
 
-        #chat-box {
-            flex: 1;
+        .chatbox .messages {
+            max-height: 300px;
             overflow-y: auto;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
 
-        input {
-            width: 100%;
+        .chatbox .messages .user-message, .chatbox .messages .ai-message {
+            margin: 5px;
             padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        .modal-content {
-            background-color: black;
-            padding: 30px;
             border-radius: 10px;
-            text-align: center;
         }
 
-        #agree-btn {
+        .chatbox .messages .user-message {
+            background-color: #6a98f0;
+            align-self: flex-end;
+            color: #fff;
+        }
+
+        .chatbox .messages .ai-message {
+            background-color: #444;
+            align-self: flex-start;
+            color: #fff;
+        }
+
+        .chatbox input[type="text"] {
             padding: 10px;
-            margin-top: 20px;
-            background-color: #4CAF50;
-            border: none;
             border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+            background-color: #222;
+            color: #fff;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .chatbox button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #6a98f0;
+            color: #fff;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 600px) {
-            header .logo span {
-                font-size: 18px;
+        .chatbox button:hover {
+            background-color: #4b7bbf;
+        }
+
+        @media (max-width: 768px) {
+            header .desktop-nav {
+                display: none;
             }
 
-            .chat-container {
-                width: 100%;
-                height: 80%;
-            }
-
-            input {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 14px;
+            .hamburger-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -164,72 +206,80 @@
     <!-- Snowflake effect -->
     <div id="snowflakes"></div>
 
-    <!-- Header with logo and text -->
+    <!-- Header Section -->
     <header>
         <div class="logo">
-            <img src="path/to/aura-logo.png" alt="Aura Logo">
+            <img src="app.jpeg" alt="Aura Logo">
             <span>Aura</span>
+        </div>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="tos.html">Terms of Service</a>
+        </nav>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav">
+            <a href="index.html">Features</a>
+            <a href="team.html">Team</a>
+            <a href="premium.html">Premium</a>
+            <a href="nexaurasup@gmail.com">Support</a>
+            <a href="tos.html">Terms of Service</a>
         </div>
     </header>
 
-    <!-- Chatbox container -->
-    <div class="chat-container">
-        <div class="chat-box">
-            <div id="chat-box"></div>
-            <input type="text" id="user-input" placeholder="Type your message..." />
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
-
-    <!-- Pop-up Modal -->
-    <div id="welcome-modal" class="modal">
-        <div class="modal-content">
-            <p><strong>Evelyn has signed to work only for Aura. She will only answer questions regarding Aura and not any other questions.</strong></p>
-            <button id="agree-btn">I Agree</button>
-        </div>
+    <!-- Chatbox Section -->
+    <div class="chatbox">
+        <div class="messages" id="messages"></div>
+        <input type="text" id="userMessage" placeholder="Type your message..." />
+        <button id="sendMessage">Send</button>
     </div>
 
     <script>
-        // Display Snowflakes Effect
-        new MagicSnowflakes({
-            container: "#snowflakes",
-            snowflakeCount: 100,
-            snowflakeSize: 8,
+        // Snowflakes effect
+        new Snowflakes({
+            count: 50,
+            color: '#ffffff',
+            minSize: 5,
+            maxSize: 12,
+            speed: 2
         });
 
-        // Show the modal on page load
-        window.onload = () => {
-            document.getElementById("welcome-modal").style.display = "flex";
-        };
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const userMessageInput = document.getElementById('userMessage');
+        const messagesContainer = document.getElementById('messages');
 
-        // Handle the "I Agree" button click
-        document.getElementById("agree-btn").onclick = () => {
-            document.getElementById("welcome-modal").style.display = "none";
-        };
-
-        // Handle sending messages
-        document.getElementById("send-btn").onclick = () => {
-            const message = document.getElementById("user-input").value;
-            if (!message) return;
-
-            displayMessage(message, 'user-msg');
-            document.getElementById("user-input").value = '';
-
-            // Mock AI response
-            setTimeout(() => {
-                displayMessage("This is an automated response from Aura's AI.", 'ai-msg');
-            }, 1000);
-        };
-
-        // Display messages in the chat
-        function displayMessage(message, sender) {
-            const chatBox = document.getElementById("chat-box");
-            const msgElement = document.createElement("div");
-            msgElement.classList.add(sender);
-            msgElement.textContent = message;
-            chatBox.appendChild(msgElement);
-            chatBox.scrollTop = chatBox.scrollHeight;
+        // Simulate AI response
+        function sendAIResponse(message) {
+            // For now, simulate an AI response with a simple function
+            const aiMessage = `AI Response: You said, "${message}"`; // Example AI response
+            const aiMessageElement = document.createElement('div');
+            aiMessageElement.classList.add('ai-message');
+            aiMessageElement.textContent = aiMessage;
+            messagesContainer.appendChild(aiMessageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
         }
+
+        sendMessageButton.addEventListener('click', () => {
+            const userMessage = userMessageInput.value.trim();
+            if (userMessage) {
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('user-message');
+                userMessageElement.textContent = userMessage;
+                messagesContainer.appendChild(userMessageElement);
+                userMessageInput.value = '';
+                sendAIResponse(userMessage); // Send the AI response
+            }
+        });
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        });
     </script>
 
 </body>
