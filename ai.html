@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#6a98f0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap">
   <link rel="icon" href="app.jpeg" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <title>Aura | AI Chat</title>
   <style>
         body {
@@ -82,6 +83,9 @@
             color: #fff;
             margin-left: auto;
             animation: slide-up 0.5s ease-out;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .message.ai {
@@ -89,7 +93,18 @@
             margin-left: 0;
         }
 
-        @keyframes slide-up {
+        .message .ai-pfp {
+           width: 30px;
+           height: 30px;
+           border-radius: 50%;
+           background-image: url('https://media.discordapp.net/attachments/1253405863314718821/1336012377631494164/IMG_20250203_220545.jpg?ex=67a2eabc&is=67a1993c&hm=5091deeed351239574514574efb05b917e80a7e70cf2f2d884c4a2e27ca7e875&='); /* Replace with your profile picture URL */
+           background-size: cover;
+           background-position: center;
+           display: inline-block;
+        }
+
+
+       @keyframes slide-up {
             0% {
                 transform: translateY(20px);
                 opacity: 0;
@@ -134,9 +149,9 @@
             align-items: center;
         }
 
-        .send-btn img {
-            width: 20px;
-            height: 20px;
+        .send-btn i {
+            color: #fff;
+            font-size: 16px;
         }
 
         /* Snow Effect */
@@ -232,7 +247,7 @@
 
   <div class="input-bar">
     <input type="text" id="userInput" placeholder="Type your message...">
-    <button class="send-btn" onclick="sendMessage()"><img src="send-icon.png" alt="Send Icon"></button>
+    <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
   </div>
 
   <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
@@ -269,7 +284,16 @@
         setTimeout(() => {
             const aiMessage = document.createElement('div');
             aiMessage.classList.add('message', 'ai');
-            aiMessage.textContent = "AI Is UnderDevelopment"; // Replace with your AI response logic
+
+            // Add AI profile picture next to the message
+            const aiProfilePicture = document.createElement('div');
+            aiProfilePicture.classList.add('ai-pfp');
+            aiMessage.appendChild(aiProfilePicture);
+
+            const aiText = document.createElement('span');
+            aiText.textContent = "This is an AI response!"; // Replace with your AI response logic
+            aiMessage.appendChild(aiText);
+
             document.getElementById('messages').appendChild(aiMessage);
 
             // Scroll to the bottom
