@@ -3,40 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meet the Aura Team">
+    <meta name="description" content="Aura Chatbot Interface">
     <meta name="theme-color" content="#6a98f0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap">
     <link rel="icon" href="app.jpeg" type="image/png">
-    <title>Aura | Meet the Team</title>
-    <!-- Snowflakes Effect -->
-    <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+    <title>Aura | AI Chat</title>
     <style>
-        /* General Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             font-family: 'Manrope', sans-serif;
             background-color: #0a0a0a;
             color: #a1a1aa;
-            overflow-x: hidden;
-            height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* Snowflakes Effect */
-        #snowflakes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            height: 100vh;
         }
 
         /* Header Section */
@@ -64,224 +44,180 @@
             border-radius: 50%;
         }
 
-        header span {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        header .desktop-nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        header .desktop-nav a {
+        header a {
             color: #ffffff;
             text-decoration: none;
+            margin: 0 15px;
             font-weight: 600;
         }
 
-        header .desktop-nav a:hover {
+        header a:hover {
             color: #6a98f0;
         }
 
-        .hamburger-menu {
-            display: none;
+        /* Chat Section */
+        .chat-container {
+            flex: 1;
+            display: flex;
             flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
+            justify-content: flex-end;
+            padding: 20px;
+            overflow-y: auto;
+            height: calc(100vh - 100px); /* adjust for header */
         }
 
-        .hamburger-menu span {
-            width: 25px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 5px;
+        .messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 100%;
+            overflow-y: auto;
         }
 
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
+        .message {
             background-color: #161616;
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 70%;
+            color: #fff;
+            margin-left: auto;
+            animation: slide-up 0.5s ease-out;
+        }
+
+        .message.ai {
+            background-color: #6a98f0;
+            margin-left: 0;
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Input Bar Section */
+        .input-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #161616;
+            padding: 10px;
+            position: sticky;
+            bottom: 0;
             z-index: 2000;
         }
 
-        .mobile-nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 0;
-        }
-
-        .mobile-nav a:hover {
-            color: #6a98f0;
-        }
-
-        /* Chatbox Styling */
-        .chatbox {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 600px;
-            background-color: #161616;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chatbox .messages {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .chatbox .messages .user-message, .chatbox .messages .ai-message {
-            margin: 5px;
+        .input-bar input {
+            flex: 1;
             padding: 10px;
-            border-radius: 10px;
-        }
-
-        .chatbox .messages .user-message {
-            background-color: #6a98f0;
-            align-self: flex-end;
-            color: #fff;
-        }
-
-        .chatbox .messages .ai-message {
-            background-color: #444;
-            align-self: flex-start;
-            color: #fff;
-        }
-
-        .chatbox input[type="text"] {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 10px;
             background-color: #222;
-            color: #fff;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        .chatbox button {
-            padding: 10px;
-            border-radius: 5px;
             border: none;
-            background-color: #6a98f0;
+            border-radius: 30px;
             color: #fff;
+            margin-right: 10px;
             font-size: 16px;
+        }
+
+        .send-btn {
+            background-color: #6a98f0;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .chatbox button:hover {
-            background-color: #4b7bbf;
+        .send-btn img {
+            width: 20px;
+            height: 20px;
         }
 
-        @media (max-width: 768px) {
-            header .desktop-nav {
-                display: none;
-            }
-
-            .hamburger-menu {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-            }
+        /* Snow Effect */
+        .snowfall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Snowflake effect -->
-    <div id="snowflakes"></div>
-
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <img src="app.jpeg" alt="Aura Logo">
-            <span>Aura</span>
-        </div>
-        <nav class="desktop-nav">
-            <a href="index.html">Home</a>
-            <a href="tos.html">Terms of Service</a>
-        </nav>
-        <div class="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="mobile-nav">
-            <a href="index.html">Features</a>
-            <a href="team.html">Team</a>
-            <a href="premium.html">Premium</a>
-            <a href="nexaurasup@gmail.com">Support</a>
-            <a href="tos.html">Terms of Service</a>
-        </div>
-    </header>
-
-    <!-- Chatbox Section -->
-    <div class="chatbox">
-        <div class="messages" id="messages"></div>
-        <input type="text" id="userMessage" placeholder="Type your message..." />
-        <button id="sendMessage">Send</button>
+<!-- Header Section -->
+<header>
+    <div class="logo">
+        <img src="app.jpeg" alt="Aura Logo">
+        <span>Aura</span>
     </div>
+</header>
 
-    <script>
-        // Snowflakes effect
-        window.onload = function() {
-            new Snowflakes({
-                count: 50,
-                color: '#ffffff',
-                minSize: 5,
-                maxSize: 12,
-                speed: 2
-            });
-        };
+<!-- Chat Section -->
+<div class="chat-container">
+    <div class="messages" id="messages">
+        <!-- Messages will be dynamically added here -->
+    </div>
+</div>
 
-        // Hamburger menu toggle
-        const hamburger = document.querySelector('.hamburger-menu');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const sendMessageButton = document.getElementById('sendMessage');
-        const userMessageInput = document.getElementById('userMessage');
-        const messagesContainer = document.getElementById('messages');
+<!-- Input Bar Section -->
+<div class="input-bar">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button class="send-btn" onclick="sendMessage()">
+        <img src="send-icon.png" alt="Send Icon"> <!-- Replace with the actual image path -->
+    </button>
+</div>
 
-        // Simulate AI response
-        function sendAIResponse(message) {
-            const aiMessage = `AI Response: You said, "${message}"`; // Example AI response
-            const aiMessageElement = document.createElement('div');
-            aiMessageElement.classList.add('ai-message');
-            aiMessageElement.textContent = aiMessage;
-            messagesContainer.appendChild(aiMessageElement);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
-        }
+<!-- Snow Effect -->
+<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+<script>
+    new Snowflakes({
+        count: 50,
+        color: '#ffffff',
+        minSize: 5,
+        maxSize: 12,
+        speed: 2
+    });
 
-        sendMessageButton.addEventListener('click', () => {
-            const userMessage = userMessageInput.value.trim();
-            if (userMessage) {
-                const userMessageElement = document.createElement('div');
-                userMessageElement.classList.add('user-message');
-                userMessageElement.textContent = userMessage;
-                messagesContainer.appendChild(userMessageElement);
-                userMessageInput.value = '';
-                sendAIResponse(userMessage); // Send the AI response
-            }
-        });
+    // Function to send a message
+    function sendMessage() {
+        const inputField = document.getElementById('userInput');
+        const messageText = inputField.value.trim();
 
-        hamburger.addEventListener('click', () => {
-            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+        if (messageText === '') return;
+
+        // Add the user's message to the chat
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.textContent = messageText;
+        document.getElementById('messages').appendChild(messageElement);
+
+        // Scroll to the bottom
+        document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
+
+        // Clear the input field
+        inputField.value = '';
+        inputField.focus();
+
+        // Simulate AI response after a delay
+        setTimeout(() => {
+            const aiMessage = document.createElement('div');
+            aiMessage.classList.add('message', 'ai');
+            aiMessage.textContent = "This is an AI response!"; // Replace with your AI response logic
+            document.getElementById('messages').appendChild(aiMessage);
+
+            // Scroll to the bottom
+            document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight;
+        }, 1000);
+    }
+</script>
 
 </body>
 </html>
