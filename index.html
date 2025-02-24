@@ -404,10 +404,6 @@
     const downloadModal = document.getElementById('download-modal');
     const closeModal = document.querySelector('.close-modal');
 
-    hamburger.addEventListener('click', () => {
-        mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
-    });
-
     downloadBtn.addEventListener('click', () => {
         downloadModal.style.display = 'flex';
     });
@@ -430,15 +426,15 @@
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
-    const hamburger = document.querySelector('.hamburger-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
-
-hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
         });
     }, { threshold: 0.2 });
 
     features.forEach(feature => observer.observe(feature));
+
+    // Mobile Navigation Toggle (Corrected)
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+    });
 </script>
 
 </body>
