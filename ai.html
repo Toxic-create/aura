@@ -102,7 +102,27 @@
             background-position: center;
             display: inline-block;
         }
-        
+
+        .feature {
+            background: linear-gradient(145deg, #121822, #0f131a); /* Dark blueish-gray gradient */
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px #0a0e12, -5px -5px 15px #141c26; /* Soft glowing shadow */
+        }
+
+        .feature::before {
+            display: none; /* Remove the white overlay */
+        }
+    
         @keyframes slide-up {
             0% {
                 transform: translateY(20px);
