@@ -39,7 +39,7 @@
             border-radius: 50%;
         }
         .desktop-nav {
-            display: flex;
+            display: none;
             gap: 20px;
         }
         .desktop-nav a {
@@ -51,7 +51,7 @@
             color: #6a98f0;
         }
         .hamburger-menu {
-            display: none;
+            display: flex;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
@@ -246,9 +246,10 @@
         }
 
         .hamburger-menu {
-        display: flex;
-        flex-direction: column;
+        display: none;
+        flex-direction: none;
         gap: 5px;
+        cursor: pointer;
         }
 
         .feature {
@@ -391,51 +392,53 @@
 
 <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
 <script>
-    new Snowflakes({
-        count: 50,
-        color: '#ffffff',
-        minSize: 5,
-        maxSize: 12,
-        speed: 2
-    });
+    document.addEventListener('DOMContentLoaded', function() { // Added DOMContentLoaded listener
+        new Snowflakes({
+            count: 50,
+            color: '#ffffff',
+            minSize: 5,
+            maxSize: 12,
+            speed: 2
+        });
 
-    const hamburger = document.querySelector('.hamburger-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const downloadBtn = document.getElementById('download-btn');
-    const downloadModal = document.getElementById('download-modal');
-    const closeModal = document.querySelector('.close-modal');
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const downloadBtn = document.getElementById('download-btn');
+        const downloadModal = document.getElementById('download-modal');
+        const closeModal = document.querySelector('.close-modal');
 
-    downloadBtn.addEventListener('click', () => {
-        downloadModal.style.display = 'flex';
-    });
+        downloadBtn.addEventListener('click', () => {
+            downloadModal.style.display = 'flex';
+        });
 
-    closeModal.addEventListener('click', () => {
-        downloadModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === downloadModal) {
+        closeModal.addEventListener('click', () => {
             downloadModal.style.display = 'none';
-        }
-    });
+        });
 
-    // Feature animations
-    const features = document.querySelectorAll('.feature');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+        window.addEventListener('click', (e) => {
+            if (e.target === downloadModal) {
+                downloadModal.style.display = 'none';
             }
         });
-    }, { threshold: 0.2 });
 
-    features.forEach(feature => observer.observe(feature));
+        // Feature animations
+        const features = document.querySelectorAll('.feature');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
-    // Mobile Navigation Toggle (Corrected)
-    hamburger.addEventListener('click', () => {
-        mobileNav.classList.toggle('open');
-    });
+        features.forEach(feature => observer.observe(feature));
+
+        // Mobile Navigation Toggle (Corrected)
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+    }); // End of DOMContentLoaded listener
 </script>
 
 </body>
