@@ -233,7 +233,40 @@
         .close-modal:hover {
             background-color: #5479c4;
         }
-        
+        @media (max-width: 768px) {
+        .desktop-nav {
+        display: none;
+        }
+
+        .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        }
+
+        .feature {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        }
+
+        .feature img,
+        .feature video {
+        width: 90%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 15px;
+        }
+
+        .feature:nth-child(odd) {
+        flex-direction: column;
+        }
+
+        .feature > div {
+        width: 90%;
+        }
+        }
     </style>
 </head>
 <body>
