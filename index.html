@@ -10,7 +10,9 @@
     <title>Aura | Connect, Stream, Listen</title>
     <meta property="og:title" content="Aura | Connect, Stream, Listen">
     <meta property="og:description" content="Aura - The ultimate app for chatting, streaming, and enjoying music. Download Aura now and connect with the world!">
+    <footer>
     <meta property="og:image" content="aura-banner.png">
+    </footer>
     <meta property="og:url" content="https://auraa.netlify.app/">
     <meta property="og:site_name" content="Aura">
     <style>
@@ -42,6 +44,13 @@
             align-items: center;
             text-align: center;
             background: url('aura-banner.png') no-repeat center center/cover; /* Updated path */
+        }
+        .footer-banner {
+            width: 100%;  /* Makes it full width */
+            max-height: 200px;  /* Adjust as needed */
+            object-fit: cover;  /* Ensures it fits properly */
+            display: block;  
+            margin: 0 auto;  /* Centers the image */
         }
         .logo {
             display: flex;
